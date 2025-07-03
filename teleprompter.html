@@ -31,6 +31,8 @@
             top: 100vh;
             left: 0;
             right: 0;
+            visibility: visible;
+            opacity: 1;
         }
 
         .section-title {
@@ -220,8 +222,16 @@
         const speedSlider = document.getElementById('speedSlider');
         const speedValue = document.getElementById('speedValue');
 
-        // Initialize text position
-        teleprompterText.style.top = '100vh';
+        // Initialize text position and ensure visibility
+        function initializeTeleprompter() {
+            // Force reset position regardless of browser state restoration
+            teleprompterText.style.top = window.innerHeight + 'px';
+            teleprompterText.style.visibility = 'visible';
+            teleprompterText.style.opacity = '1';
+            
+            // Force a repaint to ensure the text is visible
+            teleprompterText.offsetHeight;
+        }
 
         function togglePlayPause() {
             if (isScrolling) {
@@ -331,8 +341,14 @@
             }
         });
 
-        // Initialize
+        // Initialize immediately (script is at bottom of document)
+        initializeTeleprompter();
         updateSpeed();
+        
+        // Also reinitialize on window load to handle browser state restoration
+        window.addEventListener('load', function() {
+            initializeTeleprompter();
+        });
     </script>
 </body>
 </html> 
