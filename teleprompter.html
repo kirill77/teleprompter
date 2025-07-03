@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worm Project Episode 2 - Teleprompter</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .teleprompter-container {
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .teleprompter-text {
+            font-size: 48px;
+            line-height: 1.8;
+            text-align: center;
+            padding: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: absolute;
+            top: 100vh;
+            left: 0;
+            right: 0;
+        }
+
+        .section-title {
+            font-size: 56px;
+            font-weight: bold;
+            color: #ffff00;
+            margin: 60px 0 40px 0;
+            text-transform: uppercase;
+        }
+
+        .stage-direction {
+            font-style: italic;
+            color: #888;
+            font-size: 36px;
+            margin: 20px 0;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(0,0,0,0.8);
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .controls button {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .controls button:hover {
+            background: #555;
+        }
+
+        .controls button.active {
+            background: #007acc;
+        }
+
+        .speed-control {
+            color: white;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        .speed-slider {
+            width: 100px;
+        }
+
+        @media (max-width: 768px) {
+            .teleprompter-text {
+                font-size: 32px;
+                padding: 30px;
+            }
+            .section-title {
+                font-size: 40px;
+            }
+            .stage-direction {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="teleprompter-container">
+        <div class="teleprompter-text" id="teleprompter-text">
+            <div class="section-title">Cold Open - Kitchen Disaster</div>
+            
+            <p>Good morning, I'm your host, and welcome to "Cooking with Chaos!"</p>
+
+            <p class="stage-direction">[smile confidently while smoke alarm beeps faintly in background]</p>
+
+            <p>Today we're making what I call "Surprise Soufflé" - it's a surprise because even I don't know what's going to happen!</p>
+
+            <p class="stage-direction">[hold up what appears to be a charcoal brick]</p>
+
+            <p>This used to be breakfast.</p>
+
+            <div class="section-title">Segment 1: Kitchen Philosophy</div>
+
+            <p class="stage-direction">[lean in conspiratorially]</p>
+
+            <p>You know, people always ask me, "How do you burn water?" Well, first you need dedication...</p>
+
+            <p class="stage-direction">[pause dramatically, another smoke alarm joins the first]</p>
+
+            <p>And apparently, you need to forget about the kettle for 3 hours.</p>
+
+            <div class="section-title">Breaking News Interruption</div>
+
+            <p class="stage-direction">[suddenly serious, looking off-camera]</p>
+
+            <p>Ladies and gentlemen, we interrupt this cooking show to bring you breaking news...</p>
+
+            <p class="stage-direction">[pause, listen to earpiece that doesn't exist]</p>
+
+            <p>My kitchen is on fire. Again.</p>
+
+            <div class="section-title">Damage Assessment</div>
+
+            <p class="stage-direction">[coughing slightly, waving smoke away]</p>
+
+            <p>The good news is, we've discovered a new cooking method: pyrotechnics!</p>
+
+            <p>The bad news is, my insurance company has me on speed dial.</p>
+
+            <p class="stage-direction">[fire extinguisher sound effect in background]</p>
+
+            <p>That's my sous chef, Bob. He's also a volunteer firefighter. What are the odds?</p>
+
+            <div class="section-title">Viewer Mail Segment</div>
+
+            <p class="stage-direction">[holding obviously fake letter]</p>
+
+            <p>Here's a letter from viewer Sarah in Toledo: "Dear Chaos Chef, how do you make toast?"</p>
+
+            <p class="stage-direction">[look directly at camera, dead serious]</p>
+
+            <p>Sarah, I don't.</p>
+
+            <p class="stage-direction">[pause for effect]</p>
+
+            <p>I make carbon sculptures that used to be bread.</p>
+
+            <div class="section-title">Cooking Tip of the Day</div>
+
+            <p class="stage-direction">[pointing enthusiastically at camera]</p>
+
+            <p>Remember folks, cooking is 10% skill, 20% ingredients, and 70% knowing where your fire extinguisher is!</p>
+
+            <p class="stage-direction">[another alarm starts beeping]</p>
+
+            <p>Speaking of which...</p>
+
+            <div class="section-title">Emergency Exit</div>
+
+            <p class="stage-direction">[backing away from camera slowly]</p>
+
+            <p>Well, that's all the time we have for today's show!</p>
+
+            <p class="stage-direction">[louder alarms, sounds of panic off-camera]</p>
+
+            <p>Remember to like and subscribe, and maybe call the fire department!</p>
+
+            <p class="stage-direction">[shouting over noise]</p>
+
+            <p>This has been "Cooking with Chaos," where every meal is an adventure!</p>
+
+            <div class="section-title">Credits Roll</div>
+
+            <p class="stage-direction">[running off-camera, Bob chasing with fire extinguisher]</p>
+
+            <p>Next week: We'll attempt pancakes!</p>
+
+            <p class="stage-direction">[explosion sound effect]</p>
+
+            <p>Or not!</p>
+
+            <div style="height: 100vh;"></div> <!-- Spacer to allow full scroll -->
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="playPauseBtn">▶ Play</button>
+        <span class="speed-control">Speed:</span>
+        <input type="range" id="speedSlider" class="speed-slider" min="0.5" max="3" step="0.1" value="1">
+        <span id="speedValue" class="speed-control">1.0x</span>
+    </div>
+
+    <script>
+        let isScrolling = false;
+        let scrollSpeed = 1; // pixels per frame
+        let animationId;
+        
+        const teleprompterText = document.getElementById('teleprompter-text');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const speedSlider = document.getElementById('speedSlider');
+        const speedValue = document.getElementById('speedValue');
+
+        // Initialize text position
+        teleprompterText.style.top = '100vh';
+
+        function togglePlayPause() {
+            if (isScrolling) {
+                pauseScrolling();
+            } else {
+                startScrolling();
+            }
+        }
+
+        function startScrolling() {
+            if (!isScrolling) {
+                isScrolling = true;
+                playPauseBtn.classList.add('active');
+                playPauseBtn.innerHTML = '⏸ Pause';
+                scroll();
+            }
+        }
+
+        function pauseScrolling() {
+            isScrolling = false;
+            playPauseBtn.classList.remove('active');
+            playPauseBtn.innerHTML = '▶ Play';
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+        }
+
+        function manualScrollUp() {
+            const currentTop = parseFloat(teleprompterText.style.top) || window.innerHeight;
+            const newTop = Math.min(window.innerHeight, currentTop + 50);
+            teleprompterText.style.top = newTop + 'px';
+        }
+
+        function manualScrollDown() {
+            const currentTop = parseFloat(teleprompterText.style.top) || window.innerHeight;
+            const newTop = Math.max(-teleprompterText.offsetHeight, currentTop - 50);
+            teleprompterText.style.top = newTop + 'px';
+        }
+
+        function scroll() {
+            if (isScrolling) {
+                const currentTop = parseFloat(teleprompterText.style.top) || window.innerHeight;
+                const newTop = currentTop - scrollSpeed;
+                
+                // Check if we've scrolled past the content
+                if (newTop < -teleprompterText.offsetHeight) {
+                    pauseScrolling();
+                    return;
+                }
+                
+                teleprompterText.style.top = newTop + 'px';
+                animationId = requestAnimationFrame(scroll);
+            }
+        }
+
+        function updateSpeed() {
+            const speed = parseFloat(speedSlider.value);
+            scrollSpeed = speed / 2.5;
+            speedValue.textContent = speed.toFixed(1) + 'x';
+        }
+
+        // Event listeners
+        playPauseBtn.addEventListener('click', togglePlayPause);
+        speedSlider.addEventListener('input', updateSpeed);
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            switch(e.code) {
+                case 'Space':
+                    e.preventDefault();
+                    togglePlayPause();
+                    break;
+                case 'ArrowUp':
+                    e.preventDefault();
+                    if (e.shiftKey) {
+                        // Shift + Up = increase speed
+                        speedSlider.value = Math.min(3, parseFloat(speedSlider.value) + 0.1);
+                        updateSpeed();
+                    } else {
+                        // Up = manual scroll up
+                        manualScrollUp();
+                    }
+                    break;
+                case 'ArrowDown':
+                    e.preventDefault();
+                    if (e.shiftKey) {
+                        // Shift + Down = decrease speed
+                        speedSlider.value = Math.max(0.5, parseFloat(speedSlider.value) - 0.1);
+                        updateSpeed();
+                    } else {
+                        // Down = manual scroll down
+                        manualScrollDown();
+                    }
+                    break;
+            }
+        });
+
+        // Mouse wheel support for manual scrolling
+        document.addEventListener('wheel', (e) => {
+            if (!isScrolling) { // Only allow manual scroll when not auto-scrolling
+                e.preventDefault();
+                if (e.deltaY < 0) {
+                    manualScrollUp();
+                } else {
+                    manualScrollDown();
+                }
+            }
+        });
+
+        // Initialize
+        updateSpeed();
+    </script>
+</body>
+</html> 
